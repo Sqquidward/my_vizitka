@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Портфолио — Web3 & Telegram Mini Apps
 
-## Getting Started
+Одностраничный хаб-портфолио в стиле кибер-минимализма. Поддерживает открытие как Telegram Mini App.
 
-First, run the development server:
+## Стек
+
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS 4
+- Lucide React
+
+## Быстрый старт
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Настройка
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Замените ссылки в `src/config/site.ts` и `src/data/projects.ts` на свои:
 
-## Learn More
+- Telegram-профиль
+- GitHub-профиль
+- Live Demo и репозитории проектов
 
-To learn more about Next.js, take a look at the following resources:
+## Telegram Mini App
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Сайт автоматически инициализирует `Telegram.WebApp` при открытии внутри Telegram:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Раскрывает viewport (`expand`)
+- Устанавливает цвета хедера и фона
+- Учитывает safe-area insets
 
-## Deploy on Vercel
+Для деплоя как TMA укажите URL сайта в настройках бота через [@BotFather](https://t.me/BotFather).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Деплой
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Рекомендуется Cloudflare Pages:
+
+```bash
+npm run build
+```
