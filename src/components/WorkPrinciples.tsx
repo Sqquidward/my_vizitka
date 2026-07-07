@@ -18,7 +18,7 @@ export function WorkPrinciples() {
         />
       </ScrollReveal>
 
-      <StaggerContainer className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <StaggerContainer className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
         {workPrinciples.map((item, index) => {
           const Icon = icons[index] ?? MessageCircle;
 
@@ -26,7 +26,7 @@ export function WorkPrinciples() {
             <StaggerItem key={item.id}>
               <TiltSurface
                 maxTilt={6}
-                className="gradient-border glass-card group flex h-full flex-col p-5 transition-shadow duration-500 hover:shadow-[0_16px_48px_rgba(0,242,254,0.06)] sm:p-6"
+                className="gradient-border glass-card group flex h-full flex-col p-4 transition-shadow duration-500 hover:shadow-[0_16px_48px_rgba(0,242,254,0.06)] sm:p-6"
               >
                 <Icon className="mb-4 h-5 w-5 text-cyan/50 transition-colors duration-300 group-hover:text-cyan/80" />
 

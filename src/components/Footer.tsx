@@ -6,11 +6,11 @@ import { ScrollReveal } from "./motion/ScrollReveal";
 export function Footer() {
   return (
     <ScrollReveal>
-      <footer className="border-t border-border/30 pt-10">
+      <footer className="border-t border-border/30 pt-8 sm:pt-10">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-medium text-foreground">Готов к новому проекту?</p>
-            <p className="mt-1 text-sm text-muted">Напишите — обсудим за 24 часа.</p>
+            <p className="mt-1 text-sm text-muted">Напишите в Telegram — отвечу сразу.</p>
           </div>
 
           <div className="flex items-center gap-3">

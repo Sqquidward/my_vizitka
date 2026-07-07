@@ -18,7 +18,7 @@ const TERMINAL_LINES: TerminalLine[] = [
   { type: "success", text: "✓ Делаю дизайн и собираю проект" },
   { type: "success", text: "✓ Запускаю — вы получаете готовую ссылку" },
   { type: "command", text: "Сроки и связь:" },
-  { type: "output", text: "→ Срок обсуждаем после брифа · ответ в Telegram за 24ч" },
+  { type: "output", text: "→ Срок после брифа · в Telegram отвечаю сразу." },
   { type: "highlight", text: "● Свободен для нового заказа — напишите!" },
 ];
 
@@ -71,22 +71,24 @@ export function HeroTerminal() {
     <div className="relative w-full">
       <div
         aria-hidden
-        className="absolute -inset-6 rounded-2xl bg-gradient-to-br from-cyan/10 via-purple/5 to-transparent blur-2xl"
+        className="absolute -inset-3 rounded-2xl bg-gradient-to-br from-cyan/10 via-purple/5 to-transparent blur-2xl md:-inset-6"
       />
 
       <div
-        className="gradient-border glass-card glow-cyan relative w-full overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+        className="gradient-border glass-card glow-cyan relative w-full overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.35)] md:shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
         role="img"
         aria-label="Как проходит работа: от заказа до готового сайта или приложения"
       >
-        <div className="flex items-center gap-2.5 border-b border-border/60 bg-card/90 px-5 py-3.5">
-          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-          <span className="ml-2 font-mono text-[11px] text-muted/70">как-это-работает.txt</span>
+        <div className="flex items-center gap-2 border-b border-border/60 bg-card/90 px-3.5 py-2.5 md:gap-2.5 md:px-5 md:py-3.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] md:h-3 md:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e] md:h-3 md:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840] md:h-3 md:w-3" />
+          <span className="ml-1.5 truncate font-mono text-[10px] text-muted/70 md:ml-2 md:text-[11px]">
+            как-это-работает.txt
+          </span>
         </div>
 
-        <div className="min-h-[260px] bg-background/60 p-5 font-mono text-xs leading-[1.75] sm:min-h-[280px] sm:p-6 sm:text-[13px] lg:min-h-[300px] xl:min-h-[320px] xl:p-6 xl:text-sm">
+        <div className="min-h-[220px] bg-background/60 p-3.5 font-mono text-[11px] leading-[1.7] sm:min-h-[260px] sm:p-5 sm:text-xs sm:leading-[1.75] md:min-h-[280px] md:p-6 md:text-[13px] lg:min-h-[300px] xl:min-h-[320px] xl:p-6 xl:text-sm">
           {visibleLines.map((line, index) => {
             const isCurrent = index === lineIndex;
             const text =

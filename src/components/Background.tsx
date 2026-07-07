@@ -26,7 +26,7 @@ export function Background() {
       <div className="absolute inset-0 bg-background" />
 
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.04] max-md:hidden"
         style={{
           backgroundImage: `linear-gradient(rgba(0,242,254,0.6) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,242,254,0.6) 1px, transparent 1px)`,
@@ -35,15 +35,15 @@ export function Background() {
         }}
       />
 
-      <div className="bg-orb bg-orb-cyan absolute -left-32 top-[-10%] h-[600px] w-[600px] rounded-full bg-cyan/[0.04] blur-[140px]" />
-      <div className="bg-orb bg-orb-purple absolute -right-32 top-[20%] h-[500px] w-[500px] rounded-full bg-purple/[0.05] blur-[120px]" />
-      <div className="bg-orb bg-orb-pink absolute bottom-[-10%] left-1/3 h-[400px] w-[400px] rounded-full bg-pink/[0.03] blur-[100px]" />
+      <div className="bg-orb bg-orb-cyan absolute -left-32 top-[-10%] h-[600px] w-[600px] rounded-full bg-cyan/[0.04] blur-[140px] max-md:h-[320px] max-md:w-[320px] max-md:opacity-50" />
+      <div className="bg-orb bg-orb-purple absolute -right-32 top-[20%] h-[500px] w-[500px] rounded-full bg-purple/[0.05] blur-[120px] max-md:hidden" />
+      <div className="bg-orb bg-orb-pink absolute bottom-[-10%] left-1/3 h-[400px] w-[400px] rounded-full bg-pink/[0.03] blur-[100px] max-md:hidden" />
 
       <div className="cursor-glow cursor-glow-cyan absolute inset-0" />
       <div className="cursor-glow cursor-glow-purple absolute inset-0" />
 
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 max-md:opacity-15"
         style={{
           background:
             "radial-gradient(ellipse 50% 40% at 50% 0%, rgba(0,242,254,0.08) 0%, transparent 60%)",

@@ -247,8 +247,18 @@ body {
 
 @media (max-width: 768px) {
   .glass-card {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glow-cyan,
+  .glow-cyan-strong {
+    box-shadow: none;
+  }
+
+  .text-gradient {
+    animation: none;
+    background-size: 100% auto;
   }
 
   .bg-orb {
@@ -263,6 +273,10 @@ body {
 
   .bg-orb-pink {
     filter: blur(60px);
+  }
+
+  .noise-overlay::after {
+    opacity: 0.015;
   }
 }
 

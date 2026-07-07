@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, type MouseEvent, type RefObject } from "react";
+import { useCallback, useEffect, useRef, type MouseEvent, type RefObject } from "react";
 
 interface UseTiltOptions {
   maxTilt?: number;
@@ -18,9 +18,16 @@ export function useTilt<T extends HTMLElement>({
   lift = 4,
 }: UseTiltOptions = {}): UseTiltResult<T> {
   const ref = useRef<T>(null);
+  const enabledRef = useRef(true);
+
+  useEffect(() => {
+    enabledRef.current = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  }, []);
 
   const onMouseMove = useCallback(
     (event: MouseEvent<T>) => {
+      if (!enabledRef.current) return;
+
       const element = ref.current;
       if (!element) return;
 

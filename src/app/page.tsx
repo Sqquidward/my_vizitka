@@ -20,7 +20,7 @@ const Footer = dynamic(() =>
 
 export default function Home() {
   return (
-    <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-20 px-5 py-12 sm:px-8 sm:py-16 md:gap-24 md:py-20">
+    <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-12 px-4 py-8 sm:gap-16 sm:px-8 sm:py-12 md:gap-20 md:py-16 lg:gap-24 lg:py-20">
       <Hero />
       <Suspense fallback={null}>
         <Services />

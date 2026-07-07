@@ -65,24 +65,29 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </span>
       </a>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="mb-2 text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-cyan">
+      <div className="flex flex-1 flex-col p-4 sm:p-6">
+        <h3 className="mb-1.5 text-base font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-cyan sm:mb-2 sm:text-lg">
           {project.title}
         </h3>
 
-        <p className="mb-5 flex-1 text-sm leading-relaxed text-muted">
+        <p className="mb-4 flex-1 text-sm leading-relaxed text-muted sm:mb-5">
           {project.description}
         </p>
 
-        <div className="mb-5 flex flex-wrap gap-1.5">
-          {project.stack.map((tech) => (
+        <div className="mb-4 flex flex-wrap gap-1.5 sm:mb-5">
+          {project.stack.map((tech, techIndex) => (
             <span
               key={tech}
-              className="rounded-md border border-border/60 bg-background/40 px-2 py-0.5 font-mono text-[10px] text-muted/70 transition-all duration-300 group-hover:border-border group-hover:text-muted"
+              className={`rounded-md border border-border/60 bg-background/40 px-2 py-0.5 font-mono text-[10px] text-muted/70 transition-all duration-300 group-hover:border-border group-hover:text-muted ${techIndex >= 4 ? "hidden sm:inline" : ""}`}
             >
               {tech}
             </span>
           ))}
+          {project.stack.length > 4 && (
+            <span className="rounded-md border border-border/60 bg-background/40 px-2 py-0.5 font-mono text-[10px] text-muted/70 sm:hidden">
+              +{project.stack.length - 4}
+            </span>
+          )}
         </div>
 
         <div className="flex gap-2">
@@ -90,7 +95,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-cyan/30 bg-cyan/5 px-3 py-2.5 font-mono text-xs text-cyan transition-all duration-300 hover:border-cyan/60 hover:bg-cyan/15 hover:shadow-[0_0_16px_rgba(0,242,254,0.12)]"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-cyan/30 bg-cyan/5 px-3 py-2 font-mono text-xs text-cyan transition-all duration-300 hover:border-cyan/60 hover:bg-cyan/15 hover:shadow-[0_0_16px_rgba(0,242,254,0.12)] sm:py-2.5"
           >
             {isTelegramLive ? (
               <Send className="h-3 w-3" />
@@ -103,7 +108,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border/60 bg-background/30 px-3 py-2.5 font-mono text-xs text-muted transition-all duration-300 hover:border-foreground/20 hover:text-foreground"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border/60 bg-background/30 px-3 py-2 font-mono text-xs text-muted transition-all duration-300 hover:border-foreground/20 hover:text-foreground sm:py-2.5"
           >
             <GitHubIcon className="h-3 w-3" />
             GitHub
