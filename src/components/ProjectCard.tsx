@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { ExternalLink, Send } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { GitHubIcon } from "./icons/GitHubIcon";
+import { ProjectPreview } from "./ProjectPreview";
 import { TiltSurface } from "./TiltSurface";
 
 interface ProjectCardProps {
@@ -34,17 +34,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         tabIndex={-1}
         aria-hidden
       >
-        <Image
-          src={project.image}
-          alt={`Превью проекта ${project.title}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        <ProjectPreview
+          image={project.image}
+          video={project.video}
+          title={project.title}
+          priority={index === 0}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
 
-        <div className="absolute inset-0 flex items-center justify-center bg-background/50 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background/50 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
           <span className="inline-flex items-center gap-1.5 rounded-lg border border-cyan/40 bg-cyan/10 px-4 py-2 font-mono text-xs text-cyan">
             {isTelegramLive ? (
               <Send className="h-3.5 w-3.5" />

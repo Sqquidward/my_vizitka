@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 import { defaultTransition, fadeInUp, staggerContainer, viewport } from "@/lib/motion";
 
@@ -14,7 +14,7 @@ export function StaggerContainer({
   ...props
 }: StaggerContainerProps) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
@@ -23,7 +23,7 @@ export function StaggerContainer({
       {...props}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -33,13 +33,13 @@ interface StaggerItemProps extends HTMLMotionProps<"div"> {
 
 export function StaggerItem({ children, className, ...props }: StaggerItemProps) {
   return (
-    <motion.div
+    <m.div
       variants={fadeInUp}
       transition={defaultTransition}
       className={className}
       {...props}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

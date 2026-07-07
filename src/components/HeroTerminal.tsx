@@ -18,7 +18,7 @@ const TERMINAL_LINES: TerminalLine[] = [
   { type: "success", text: "✓ Делаю дизайн и собираю проект" },
   { type: "success", text: "✓ Запускаю — вы получаете готовую ссылку" },
   { type: "command", text: "Сроки и связь:" },
-  { type: "output", text: "→ ~7 дней на проект · ответ в Telegram за 24ч" },
+  { type: "output", text: "→ Срок обсуждаем после брифа · ответ в Telegram за 24ч" },
   { type: "highlight", text: "● Свободен для нового заказа — напишите!" },
 ];
 
@@ -86,7 +86,7 @@ export function HeroTerminal() {
           <span className="ml-2 font-mono text-[11px] text-muted/70">как-это-работает.txt</span>
         </div>
 
-        <div className="min-h-[300px] bg-background/60 p-5 font-mono text-xs leading-[1.75] sm:min-h-[320px] sm:p-6 sm:text-[13px] xl:min-h-[360px] xl:p-7 xl:text-sm">
+        <div className="min-h-[260px] bg-background/60 p-5 font-mono text-xs leading-[1.75] sm:min-h-[280px] sm:p-6 sm:text-[13px] lg:min-h-[300px] xl:min-h-[320px] xl:p-6 xl:text-sm">
           {visibleLines.map((line, index) => {
             const isCurrent = index === lineIndex;
             const text =

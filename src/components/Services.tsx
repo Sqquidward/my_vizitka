@@ -6,7 +6,7 @@ import { TiltSurface } from "./TiltSurface";
 
 export function Services() {
   return (
-    <section aria-labelledby="services-heading">
+    <section aria-labelledby="services-heading" className="section-below-fold">
       <ScrollReveal>
         <SectionHeading id="services-heading" label="// services" title="Что делаю" />
       </ScrollReveal>

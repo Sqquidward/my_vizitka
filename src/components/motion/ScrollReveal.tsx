@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 import { defaultTransition, fadeInUp, viewport } from "@/lib/motion";
 
@@ -16,7 +16,7 @@ export function ScrollReveal({
   ...props
 }: ScrollRevealProps) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
@@ -26,6 +26,6 @@ export function ScrollReveal({
       {...props}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
