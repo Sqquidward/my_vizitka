@@ -2,37 +2,23 @@
 
 import { useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
+import type { Dictionary } from "@/i18n/types";
 
-type LineType = "command" | "success" | "output" | "highlight";
-
-interface TerminalLine {
-  type: LineType;
-  text: string;
+interface HeroTerminalProps {
+  terminal: Dictionary["terminal"];
 }
-
-const TERMINAL_LINES: TerminalLine[] = [
-  { type: "command", text: "Что вам нужно?" },
-  { type: "output", text: "→ Сайт, магазин, приложение или бот в Telegram" },
-  { type: "command", text: "Как проходит работа:" },
-  { type: "success", text: "✓ Обсуждаем задачу и пожелания" },
-  { type: "success", text: "✓ Делаю дизайн и собираю проект" },
-  { type: "success", text: "✓ Запускаю — вы получаете готовую ссылку" },
-  { type: "command", text: "Сроки и связь:" },
-  { type: "output", text: "→ Срок после брифа · в Telegram отвечаю сразу." },
-  { type: "highlight", text: "● Свободен для нового заказа — напишите!" },
-];
 
 const TYPING_MS = 32;
 const LINE_PAUSE_MS = 380;
 
-const lineColors: Record<LineType, string> = {
+const lineColors = {
   command: "text-foreground/90",
   success: "text-emerald-400/90",
   output: "text-muted",
   highlight: "text-cyan",
-};
+} as const;
 
-export function HeroTerminal() {
+export function HeroTerminal({ terminal }: HeroTerminalProps) {
   const reducedMotion = useReducedMotion();
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -40,13 +26,13 @@ export function HeroTerminal() {
 
   useEffect(() => {
     if (reducedMotion) {
-      setLineIndex(TERMINAL_LINES.length - 1);
-      setCharIndex(TERMINAL_LINES.at(-1)!.text.length);
+      setLineIndex(terminal.lines.length - 1);
+      setCharIndex(terminal.lines.at(-1)!.text.length);
       setFinished(true);
       return;
     }
 
-    const currentLine = TERMINAL_LINES[lineIndex];
+    const currentLine = terminal.lines[lineIndex];
     if (!currentLine) return;
 
     if (charIndex < currentLine.text.length) {
@@ -54,7 +40,7 @@ export function HeroTerminal() {
       return () => window.clearTimeout(timeout);
     }
 
-    if (lineIndex < TERMINAL_LINES.length - 1) {
+    if (lineIndex < terminal.lines.length - 1) {
       const timeout = window.setTimeout(() => {
         setLineIndex((i) => i + 1);
         setCharIndex(0);
@@ -63,9 +49,9 @@ export function HeroTerminal() {
     }
 
     setFinished(true);
-  }, [lineIndex, charIndex, reducedMotion]);
+  }, [lineIndex, charIndex, reducedMotion, terminal.lines]);
 
-  const visibleLines = TERMINAL_LINES.slice(0, lineIndex + 1);
+  const visibleLines = terminal.lines.slice(0, lineIndex + 1);
 
   return (
     <div className="relative w-full">
@@ -77,14 +63,14 @@ export function HeroTerminal() {
       <div
         className="gradient-border glass-card glow-cyan relative w-full overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.35)] md:shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
         role="img"
-        aria-label="Как проходит работа: от заказа до готового сайта или приложения"
+        aria-label={terminal.ariaLabel}
       >
         <div className="flex items-center gap-2 border-b border-border/60 bg-card/90 px-3.5 py-2.5 md:gap-2.5 md:px-5 md:py-3.5">
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57] md:h-3 md:w-3" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e] md:h-3 md:w-3" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840] md:h-3 md:w-3" />
           <span className="ml-1.5 truncate font-mono text-[10px] text-muted/70 md:ml-2 md:text-[11px]">
-            как-это-работает.txt
+            {terminal.filename}
           </span>
         </div>
 

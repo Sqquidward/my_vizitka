@@ -1,22 +1,29 @@
-import { services } from "@/data/services";
-import { ScrollReveal } from "./motion/ScrollReveal";
-import { StaggerContainer, StaggerItem } from "./motion/Stagger";
+import { serviceIcons } from "@/data/services";
+import type { Dictionary } from "@/i18n/types";
 import { SectionHeading } from "./SectionHeading";
 import { TiltSurface } from "./TiltSurface";
 
-export function Services() {
-  return (
-    <section aria-labelledby="services-heading" className="section-below-fold">
-      <ScrollReveal>
-        <SectionHeading id="services-heading" label="// services" title="Что делаю" />
-      </ScrollReveal>
+interface ServicesProps {
+  dict: Dictionary;
+}
 
-      <StaggerContainer className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => {
-          const Icon = service.icon;
+export function Services({ dict }: ServicesProps) {
+  const { sections, services } = dict;
+
+  return (
+    <>
+      <SectionHeading
+        id="services-heading"
+        label={sections.services.label}
+        title={sections.services.title}
+      />
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        {services.map((service, index) => {
+          const Icon = serviceIcons[index];
 
           return (
-            <StaggerItem key={service.title}>
+            <div key={service.title} data-service-card className="[perspective:800px]">
               <TiltSurface
                 maxTilt={6}
                 className="gradient-border glass-card group flex h-full flex-col p-4 transition-shadow duration-500 hover:shadow-[0_16px_48px_rgba(0,242,254,0.06)] sm:p-6"
@@ -32,10 +39,10 @@ export function Services() {
                   {service.description}
                 </p>
               </TiltSurface>
-            </StaggerItem>
+            </div>
           );
         })}
-      </StaggerContainer>
-    </section>
+      </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { ExternalLink, Send } from "lucide-react";
-import type { Project } from "@/data/projects";
+import type { Project, ProjectCategoryKey } from "@/data/projects";
 import { GitHubIcon } from "./icons/GitHubIcon";
 import { ProjectPreview } from "./ProjectPreview";
 import { TiltSurface } from "./TiltSurface";
@@ -7,21 +7,23 @@ import { TiltSurface } from "./TiltSurface";
 interface ProjectCardProps {
   project: Project;
   index: number;
+  cinematic?: boolean;
 }
 
-const categoryColors: Record<string, string> = {
-  Лендинг: "border-pink/30 bg-pink/10 text-pink",
-  "Сайт-визитка": "border-foreground/20 bg-foreground/5 text-foreground/70",
-  Telegram: "border-purple/30 bg-purple/10 text-purple",
-  Крипто: "border-cyan/30 bg-cyan/10 text-cyan",
+const categoryColors: Record<ProjectCategoryKey, string> = {
+  landing: "border-pink/30 bg-pink/10 text-pink",
+  portfolio: "border-foreground/20 bg-foreground/5 text-foreground/70",
+  telegram: "border-purple/30 bg-purple/10 text-purple",
+  crypto: "border-cyan/30 bg-cyan/10 text-cyan",
 };
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, index, cinematic = false }: ProjectCardProps) {
   const isTelegramLive = project.liveLabel === "telegram";
-  const badgeClass = categoryColors[project.category] ?? categoryColors["Сайт-визитка"];
+  const badgeClass = categoryColors[project.category];
 
   return (
     <TiltSurface
+      maxTilt={cinematic ? 0 : undefined}
       className="gradient-border glass-card group flex h-full flex-col overflow-hidden p-0 transition-shadow duration-500 hover:shadow-[0_20px_60px_rgba(0,242,254,0.08)]"
       role="article"
       aria-label={project.title}
@@ -30,7 +32,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         href={project.liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block aspect-[16/10] overflow-hidden"
+        className="relative z-0 block aspect-[16/10] overflow-hidden"
         tabIndex={-1}
         aria-hidden
       >
@@ -39,6 +41,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           video={project.video}
           title={project.title}
           priority={index === 0}
+          cinematic={cinematic}
         />
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
@@ -61,11 +64,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <span
           className={`absolute right-3 top-3 rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider backdrop-blur-sm ${badgeClass}`}
         >
-          {project.category}
+          {project.categoryLabel}
         </span>
       </a>
 
-      <div className="flex flex-1 flex-col p-4 sm:p-6">
+      <div className="relative z-0 flex flex-1 flex-col p-4 sm:p-6">
         <h3 className="mb-1.5 text-base font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-cyan sm:mb-2 sm:text-lg">
           {project.title}
         </h3>

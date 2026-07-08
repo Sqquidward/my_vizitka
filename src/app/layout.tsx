@@ -3,7 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Background } from "@/components/Background";
 import { MotionProvider } from "@/components/MotionProvider";
+import { ScrollProvider } from "@/components/scroll/ScrollProvider";
 import { TelegramProvider } from "@/components/TelegramProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { createMetadata } from "@/lib/create-metadata";
+import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,17 +22,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Разработка сайтов, приложений и Telegram-ботов под ключ",
-  description:
-    "Лендинги, визитки, интернет-магазины, Telegram-приложения, мобильные приложения и автоматизация. Next.js, TypeScript, Cloudflare.",
-  openGraph: {
-    title: "Разработка сайтов, приложений и Telegram-ботов под ключ",
-    description:
-      "Сайты и приложения под ключ — быстро, без шаблонов. Переводы и USDT.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = createMetadata("ru");
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -48,16 +42,24 @@ export default function RootLayout({
     <html
       lang="ru"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full">
         <Background />
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="lazyOnload"
         />
-        <MotionProvider>
-          <TelegramProvider>{children}</TelegramProvider>
-        </MotionProvider>
+        <ThemeProvider>
+          <MotionProvider>
+            <ScrollProvider>
+              <TelegramProvider>{children}</TelegramProvider>
+            </ScrollProvider>
+          </MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

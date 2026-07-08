@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useThemeColors } from "./ThemeProvider";
 
 declare global {
   interface Window {
@@ -18,15 +19,17 @@ declare global {
 }
 
 export function TelegramProvider({ children }: { children: React.ReactNode }) {
+  const { background } = useThemeColors();
+
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
     if (!tg) return;
 
     tg.ready();
     tg.expand();
-    tg.setHeaderColor("#0B0E14");
-    tg.setBackgroundColor("#0B0E14");
-  }, []);
+    tg.setHeaderColor(background);
+    tg.setBackgroundColor(background);
+  }, [background]);
 
   return <>{children}</>;
 }
